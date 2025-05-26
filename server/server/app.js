@@ -6,6 +6,7 @@ import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
 //routers
 import userRouter from "../routers/userRouter.js";
+import commentRouter from "../routers/commentRouter.js"
 
 dotenv.config();
 /**@type {string}*/
@@ -30,6 +31,7 @@ app.use(cookieParser());
 
 //========routers========
 app.use("/users", userRouter);
+app.use("/comments", commentRouter);
 //=========last==========
 app.use(errorHandler);
 

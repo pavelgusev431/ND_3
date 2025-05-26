@@ -57,7 +57,10 @@ const createUser = async (req, res) => {
 
   res.status(201).json({
     status: "success",
-    data: user,
+    data: {
+      username: user.username,
+      email: user.email,
+    },
   });
 };
 
@@ -91,10 +94,10 @@ const login = async (req, res, next) => {
     res.status(200).json({
       status: "success",
       data: {
-        user,
+        username: user.username,
+        email: user.email,
         role: secret.role,
       },
-      token: token,
     });
   } catch (error) {
     next(error);
@@ -102,41 +105,39 @@ const login = async (req, res, next) => {
 };
 
 const logout = async (req, res, next) => {
-    try {
-        const cookies = req.cookies;
-        if (!cookies?.token) return res.sendStatus(203);
-        const token = jsonwebtoken.decode(cookies.token);
-        const foundUser = await User.findById(token.id);
-        if (foundUser) {
-            res.clearCookie('token', { httpOnly: true });
-            res.clearCookie('tokenJS');
-            return res.sendStatus(204);
-        } else throw new AppError('User not found', 404);
-    } catch (error) {
-        next(error);
-    }
+  try {
+    const cookies = req.cookies;
+    if (!cookies?.token) return res.sendStatus(203);
+    const token = jsonwebtoken.decode(cookies.token);
+    const foundUser = await User.findById(token.id);
+    if (foundUser) {
+      res.clearCookie("token", { httpOnly: true });
+      res.clearCookie("tokenJS");
+      return res.sendStatus(204);
+    } else throw new AppError("User not found", 404);
+  } catch (error) {
+    next(error);
+  }
 };
 
 const me = async (_req, res, next) => {
-    try {
-        const { id } = res.locals;
-        const user = await User.findById(id);
-        const secret = await Secret.findOne({ userId: id });
-        if (user && secret) {
-            res.status(200).json({
-                status: 'success',
-                data: { user, role: secret.role },
-            });
-        } else throw new AppError('User not found', 404);
-    } catch (error) {
-        next(error);
-    }
+  try {
+    const { id } = res.locals;
+    const user = await User.findById(id);
+    const secret = await Secret.findOne({ userId: id });
+    if (user && secret) {
+      res.status(200).json({
+        status: "success",
+        data: { 
+          username: user.username, 
+          email: user.email, 
+          role: secret.role 
+        },
+      });
+    } else throw new AppError("User not found", 404);
+  } catch (error) {
+    next(error);
+  }
 };
 
-export {
-    createAdmin,
-    createUser,
-    login,
-    logout,
-    me,
-}
+export { createAdmin, createUser, login, logout, me };
