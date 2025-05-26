@@ -5,7 +5,7 @@ import errorHandler from '../middlewares/errorHandler.js';
 import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
 //routers
-
+import userRouter from "../routers/userRouter.js";
 
 dotenv.config();
 /**@type {string}*/
@@ -29,7 +29,7 @@ app.use(cors(corsOptions));
 app.use(cookieParser());
 
 //========routers========
-
+app.use("/users", userRouter);
 //=========last==========
 app.use(errorHandler);
 

@@ -7,5 +7,6 @@ testSchema.methods.test = () => {
 }
 
 const Test = mn.model("Test", testSchema);
+await Test.deleteMany();
 
 export default Test;
