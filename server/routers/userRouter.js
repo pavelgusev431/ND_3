@@ -8,7 +8,7 @@ userRouter.route("/").post(createUser);
 userRouter.route("/login").post(login);
 userRouter.use(protect);
 userRouter.route("/logout").post(logout);
-userRouter.route("/me").post(me);
+userRouter.route("/me").get(me);
 userRouter.route("/:id").get(getUserById);
 
 export default userRouter;

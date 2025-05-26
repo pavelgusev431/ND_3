@@ -78,7 +78,7 @@ const deleteComment = async (req, res, next) => {
       throw new AppError(403, "Can not delete another user's comment");
     }
     await comment.deleteOne();
-    res.sendStatus(203);
+    res.sendStatus(204);
   } catch (error) {
     next(error);
   }

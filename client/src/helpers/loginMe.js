@@ -3,11 +3,11 @@ import url from './getURL.js';
 
 const loginMe = async () => {
     const response = await axios
-        .post(url('users/me'), { withCredentials: true })
+        .get(url('users/me'), { withCredentials: true })
         .catch((error) => {
-            return error;
+            return error.message;
         });
-    return response;
+    return response.data;
 };
 
 export default loginMe;

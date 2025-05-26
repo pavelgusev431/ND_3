@@ -3,19 +3,18 @@ import { createContext, useEffect, useMemo, useState } from "react";
 const AuthContext = createContext(null);
 
 import loginMe from "../helpers/loginMe.js";
-
 import axios from "axios";
 import Cookies from "js-cookie";
 
 const AuthContextProvider = ({ children }) => {
   const [auth, setAuth] = useState();
   const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     const fetchMe = async () => {
       try {
         if (Cookies.get("tokenJS")) {
           const data = await loginMe();
-          console.log(data);
           if (axios.isAxiosError(data))
             throw new Error(
               "Unauthorized. Perhaps the server has restarted and your session ended."
@@ -25,14 +24,12 @@ const AuthContextProvider = ({ children }) => {
       } catch (error) {
         if (error) setAuth(null);
         Cookies.remove("tokenJS");
-        console.log(error.message);
       } finally {
         setLoading(false);
       }
     };
-    setTimeout(() => {
-      fetchMe();
-    }, 1000);
+
+    fetchMe();
   }, []);
 
   const providedObject = useMemo(() => {

@@ -56,7 +56,6 @@ const Auth = () => {
         const user = await loginUser(data);
         if (!user) throw new Error("Invalid login crenedtials");
         setAuth(user);
-        console.log(user);
         navigate(from, { replace: true });
       }
     } catch (error) {

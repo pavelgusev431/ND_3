@@ -23,9 +23,9 @@ const CommentList = ({ update, setUpdate }) => {
   }, [update]);
 
   return (
-    <div>
+    <div className="w-full flex flex-col">
       {error.message || (
-        <div>
+        <div className="w-full">
           {comments[0] && comments.map((comment) => {
             return (
               <Comment

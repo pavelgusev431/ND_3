@@ -34,7 +34,7 @@ const createAdmin = async () => {
     );
   } catch (error) {
     throw new AppError(
-      `\x1b[31mError creating admin account:\x1b[0m\n${error}`,
+      `\x1b[31mError creating admin account:\x1b[0m\n${error.message}`,
       500
     );
   }
@@ -130,6 +130,7 @@ const me = async (_req, res, next) => {
       res.status(200).json({
         status: "success",
         data: { 
+          id: user.id,
           username: user.username, 
           email: user.email, 
           role: secret.role 

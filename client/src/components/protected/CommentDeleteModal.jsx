@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import { deleteComment } from "../../helpers/commentCRUD.js";
 import { useState } from "react";
 
-const CommentDeleteComment = ({ id, toggleShow }) => {
+const CommentDeleteComment = ({ id, toggleShow, setUpdate }) => {
   const { handleSubmit } = useForm();
 
   const [error, setError] = useState("");
@@ -10,6 +10,8 @@ const CommentDeleteComment = ({ id, toggleShow }) => {
   const submitHandler = async () => {
     try {
       await deleteComment(id);
+      toggleShow();
+      setUpdate((update) => update + 1);
     } catch (error) {
       setError(error.message || "Failed to delete comment");
     }
@@ -42,10 +44,7 @@ const CommentDeleteComment = ({ id, toggleShow }) => {
             </svg>
           </button>
         </div>
-        <form
-          onSubmit={handleSubmit(submitHandler)}
-          className="p-6"
-        >
+        <form onSubmit={handleSubmit(submitHandler)} className="p-6">
           <p>Are you sure you want to delete this comment?</p>
           <button
             type="submit"

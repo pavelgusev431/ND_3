@@ -28,7 +28,7 @@ const Comment = ({ comment, setUpdate }) => {
   };
 
   return (
-    <div>
+    <div className="flex flex-row justify-between w-full">
       <div>{username}</div>
       <div>{content}</div>
       {auth.id === userId && (
