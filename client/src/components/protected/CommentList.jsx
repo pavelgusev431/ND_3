@@ -24,9 +24,9 @@ const CommentList = ({ update, setUpdate }) => {
 
   return (
     <div className="w-full flex flex-col">
-      {error.message || (
+      {error ||  (comments[0] && 
         <div className="w-full">
-          {comments[0] && comments.map((comment) => {
+          {comments.map((comment) => {
             return (
               <Comment
                 key={comment.id}
@@ -36,7 +36,7 @@ const CommentList = ({ update, setUpdate }) => {
             );
           })}
         </div>
-      )}
+      ) || <p className="italic text-gray-400">No comments found..</p>}
     </div>
   );
 };

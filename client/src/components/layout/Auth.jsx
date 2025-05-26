@@ -4,7 +4,7 @@ import createUser from "../../helpers/createUser.js";
 import loginUser from "../../helpers/loginUser.js";
 import { AuthContext } from "../../contexts/AuthContext.jsx";
 import { useLocation, useNavigate } from "react-router";
-import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const Auth = () => {
   const navigate = useNavigate();
@@ -64,12 +64,14 @@ const Auth = () => {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <div>
+    <div className="w-full h-[90dvh] flex flex-col items-center justify-center">
+      <h1 className="text-5xl italic font-bold">{(authType === "signup") ? "Registration" : "Login"}</h1>
+      <form onSubmit={handleSubmit(onSubmit)} className="w-1/2 flex flex-col gap-5 items-center">
+        <div className="w-full">
           <input
             type="name"
             placeholder="Username"
+            className="w-full placeholder:text-black px-4 py-3 border-0 border-b-2 border-gray-300 rounded-lg focus:outline-none focus:ring-0 focus:border-[#DB0045] peer"
             {...register("username", {
               required: "Username is required",
               minLength: {
@@ -84,16 +86,17 @@ const Auth = () => {
             })}
           />
           {errors.username && (
-            <p className="text-red-500 text-sm mt-1 dark:text-red-600">
+            <p className="text-red-500 text-sm mt-2 text-center dark:text-red-600">
               {errors.username.message}
             </p>
           )}
         </div>
         {authType === "signup" && (
-          <div>
+          <div className="w-full">
             <input
               type="email"
               placeholder="Email"
+              className="w-full placeholder:text-black px-4 py-3 border-0 border-b-2 border-gray-300 rounded-lg focus:outline-none focus:ring-0 focus:border-[#DB0045] peer"
               {...register("email", {
                 required: "Email is required",
                 validate: (value) => {
@@ -116,13 +119,18 @@ const Auth = () => {
                 },
               })}
             />
-            {errors.email && <p>{errors.email.message}</p>}
+            {errors.email && (
+              <p className="text-red-500 text-sm mt-2 text-center dark:text-red-600">
+                {errors.email.message}
+              </p>
+            )}
           </div>
         )}
-        <div>
+        <div className="relative w-full">
           <input
             type={showPassword ? "text" : "password"}
             placeholder="Password"
+            className="w-full placeholder:text-black px-4 py-3 border-0 border-b-2 border-gray-300 rounded-lg focus:outline-none focus:ring-0 focus:border-[#DB0045] peer"
             {...register("password", {
               required: "Password is required",
               minLength: {
@@ -153,18 +161,22 @@ const Auth = () => {
           />
           <button
             type="button"
-            className="absolute right-3 top-5 text-gray-600"
+            className="absolute right-5 top-4 text-gray-600"
             onClick={() => setShowPassword((prev) => !prev)}
           >
             {showPassword ? <FaEyeSlash /> : <FaEye />}
           </button>
-          {errors.password && <p>{errors.password.message}</p>}
+          {errors.password && (
+            <p className="text-red-500 text-sm mt-2 text-center dark:text-red-600">
+              {errors.password.message}
+            </p>
+          )}
         </div>
         {authType === "signup" && (
-          <div>
+          <div className="w-full">
             <input
               type={showPassword ? "text" : "password"}
-              className="w-full dark:placeholder:text-gray-300 placeholder:text-black px-4 py-3 border-0 border-b-2 border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-0 focus:border-[#DB0045] peer"
+              className="w-full placeholder:text-black px-4 py-3 border-0 border-b-2 border-gray-300 rounded-lg focus:outline-none focus:ring-0 focus:border-[#DB0045] peer"
               placeholder="Repeat Password"
               {...register("repeatPassword", {
                 required: {
@@ -175,11 +187,18 @@ const Auth = () => {
                   value === watch("password") || "Passwords must match",
               })}
             />
-            {errors.repeatPassword && <p>{errors.repeatPassword.message}</p>}
+            {errors.repeatPassword && (
+              <p className="text-red-500 text-sm mt-2 text-center dark:text-red-600">
+                {errors.repeatPassword.message}
+              </p>
+            )}
           </div>
         )}
 
-        <button type="submit">
+        <button
+          type="submit"
+          className="w-1/3 bg-red-500 hover:bg-red-600 text-white font-medium py-1 px-4 rounded-lg transition duration-200 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50"
+        >
           {authType === "login" ? "Login" : "Sign Up"}
         </button>
 

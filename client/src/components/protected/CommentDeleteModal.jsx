@@ -22,7 +22,7 @@ const CommentDeleteComment = ({ id, toggleShow, setUpdate }) => {
       <div className="bg-white rounded-lg shadow-xl w-full max-w-md overflow-hidden">
         <div className="flex items-center justify-between px-6 py-4 border-b border-gray-200">
           <h3 className="text-xl font-semibold text-gray-800">
-            Delete Product
+            Delete Comment
           </h3>
           <button
             onClick={toggleShow}
@@ -53,8 +53,7 @@ const CommentDeleteComment = ({ id, toggleShow, setUpdate }) => {
             Yes
           </button>{" "}
           <button
-            type="submit"
-            className="w-1/3 bg-red-500 hover:bg-red-600 text-white font-medium py-1 px-4 rounded-lg transition duration-200 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50"
+            className="w-1/3 bg-gray-500 hover:bg-gray-600 text-white font-medium py-1 px-4 rounded-lg transition duration-200 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50"
             onClick={toggleShow}
           >
             Cancel
