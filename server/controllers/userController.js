@@ -94,6 +94,7 @@ const login = async (req, res, next) => {
     res.status(200).json({
       status: "success",
       data: {
+        id: user.id,
         username: user.username,
         email: user.email,
         role: secret.role,
@@ -140,4 +141,20 @@ const me = async (_req, res, next) => {
   }
 };
 
-export { createAdmin, createUser, login, logout, me };
+const getUserById = async (req, res, next) => {
+  try {
+    const {id} = req.params;
+    const user = await User.findById(id);
+    res.status(200).json({
+      status: "success",
+      data: {
+        username: user.username,
+        email: user.email,
+      }
+    });
+  } catch (error) {
+    next(error);
+  }
+}
+
+export { createAdmin, createUser, login, logout, me, getUserById };

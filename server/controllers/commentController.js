@@ -32,6 +32,7 @@ const getComments = async (_req, res, next) => {
     comments = comments.map((comment) => {
       return {
         id: comment.id,
+        userId: comment.userId,
         content: comment.content,
       };
     });
@@ -68,21 +69,17 @@ const updateComment = async (req, res, next) => {
 };
 
 const deleteComment = async (req, res, next) => {
-  console.log("Inside");
   try {
-    console.log("Inside try/catch");
     const { commentId } = req.params;
     const { id } = res.locals;
 
     const comment = await Comment.findById(commentId);
     if (comment.userId !== id) {
-      console.log("Id doesn't match");
       throw new AppError(403, "Can not delete another user's comment");
     }
     await comment.deleteOne();
     res.sendStatus(203);
   } catch (error) {
-    console.log("Found error");
     next(error);
   }
 };
