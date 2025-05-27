@@ -1,0 +1,127 @@
+{
+  "version": "0.1",
+  "tables": [
+    {
+      "id": "f68d2090-79ba-49d5-a63d-ff53a5b43819",
+      "tableName": "users",
+      "fields": [
+        {
+          "id": "8a2100c8-4dfc-4dbe-8d15-27f63da4aae4",
+          "PK": true,
+          "name": "_id",
+          "type": "objectId",
+          "isNN": true,
+          "children": []
+        },
+        {
+          "id": "f8d56ddd-1355-4f31-bfcf-87ffec071324",
+          "PK": false,
+          "name": "username",
+          "type": "string",
+          "children": []
+        },
+        {
+          "id": "87ea2619-d752-413c-a211-d7118e6f5a83",
+          "PK": false,
+          "name": "email",
+          "type": "string",
+          "children": []
+        }
+      ],
+      "x": 790.75,
+      "y": 314.04999999999995
+    },
+    {
+      "id": "cd05ff79-a362-4525-96dd-b3a300bab180",
+      "tableName": "secrets",
+      "fields": [
+        {
+          "id": "b9d89a29-2a5f-4030-bb64-1eb038915376",
+          "PK": true,
+          "name": "_id",
+          "type": "objectId",
+          "isNN": true,
+          "children": []
+        },
+        {
+          "id": "602fe16b-5a24-4802-8278-9f82935c6b3a",
+          "PK": false,
+          "name": "userId",
+          "type": "string",
+          "isNN": false,
+          "children": []
+        },
+        {
+          "id": "46b44ff4-4d98-4b78-8034-4bcc48925557",
+          "PK": false,
+          "name": "password",
+          "type": "string",
+          "isNN": false,
+          "children": []
+        },
+        {
+          "id": "43298b58-e6c9-4c3e-8ebd-53b234d31823",
+          "PK": false,
+          "name": "role",
+          "type": "string",
+          "isNN": false,
+          "children": []
+        }
+      ],
+      "x": 764.5000000000002,
+      "y": 149.19999999999993
+    },
+    {
+      "id": "78f4687f-6431-40be-84f0-f20d33ba84cd",
+      "tableName": "comments",
+      "fields": [
+        {
+          "id": "77b35f8c-3f9b-4066-aa25-a1b4d1c02d7e",
+          "PK": true,
+          "name": "_id",
+          "type": "objectId",
+          "isNN": true,
+          "children": []
+        },
+        {
+          "id": "17c9bb7f-5167-4cdd-b975-1da66838ee42",
+          "PK": false,
+          "name": "userId",
+          "type": "string",
+          "isNN": false,
+          "children": []
+        },
+        {
+          "id": "544b71fe-e0ce-4a56-bda4-c090e2ffdb61",
+          "PK": false,
+          "name": "content",
+          "type": "string",
+          "isNN": false,
+          "children": []
+        }
+      ],
+      "x": 825.4,
+      "y": 455.80000000000007
+    }
+  ],
+  "relations": [
+    {
+      "id": "8c7286bd-07b9-4437-a1de-f6f24a9c3a6d",
+      "type": "M:1",
+      "fromTableId": "78f4687f-6431-40be-84f0-f20d33ba84cd",
+      "fromFieldId": "17c9bb7f-5167-4cdd-b975-1da66838ee42",
+      "toFieldId": "8a2100c8-4dfc-4dbe-8d15-27f63da4aae4",
+      "toTableId": "f68d2090-79ba-49d5-a63d-ff53a5b43819"
+    },
+    {
+      "id": "d7e08643-e0a8-4fbf-9835-03262ea7909a",
+      "type": "M:1",
+      "fromTableId": "cd05ff79-a362-4525-96dd-b3a300bab180",
+      "fromFieldId": "602fe16b-5a24-4802-8278-9f82935c6b3a",
+      "toFieldId": "8a2100c8-4dfc-4dbe-8d15-27f63da4aae4",
+      "toTableId": "f68d2090-79ba-49d5-a63d-ff53a5b43819"
+    }
+  ],
+  "selectedElementId": null,
+  "isPristine": false
+}
